@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+class laptop{ //superclass
+    public void chipset(){
+        System.out.println("\nSelalunya i5 intel");
+    }
+}
+class asus extends laptop{ //subclass
+    public void chipset(){ //override method
+        System.out.println("\nYour laptop chipset is ryzen 50 or upwards");
+    }
+}
+class macbook extends laptop{
+    public void chipset(){ //override method
+        System.out.println("\nM1, M2 or newest M3 chip");
+    }
+}
+public class JAVA2282023 {
+    static Scanner in = new Scanner(System.in);
+    static int auswählen;
+    static int nein = 0;
+
+    public static void main(String[] args) {
+
+        // dynamic polymorphism ->
+        laptop laptopnye = new laptop();  // overriding
+        laptop asusnye = new asus(); // overriding
+        laptop macbooknye = new macbook(); // overriding
+
+        System.out.println("Welcome to chipset checker!");
+        do {
+
+            System.out.println("Please insert what type of laptop");
+            System.out.println("1.Asus\n2.Macbook\n3.Unknown");
+            auswählen = in.nextInt();
+            try {
+                if (auswählen == 1) {
+                    asusnye.chipset();
+                    nein = 1;
+                } else if (auswählen == 2) {
+                    macbooknye.chipset();
+                    nein = 1;
+                } else if (auswählen == 3) {
+                    laptopnye.chipset();
+                    nein = 1;
+                } else {
+                    System.out.println("Number is unknown, please insert again");
+                }
+
+            } catch (ArithmeticException e) {
+                System.out.println("Number is out of boundary, please insert again");
+            }
+        }while(nein == 0);
+    }
+}
